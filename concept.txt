@@ -1,0 +1,20 @@
+1 Field
+2 Players
+max. 42 Turns
+
+7 Cols
+6 Rows
+42 Holes
+
+Timer:
+40 Seconds
+(A game is supposed to be about 10 minutes = 600 seconds = 14.3 seconds per turn - 40 seconds to have more time to reflect but not enough to make a game too slow)
+
+After each turn you check if you win.
+Look if LOWER three pieces are the same color. (If row-index is maximum 2)
+If not look if LEFT three pieces are the same color. (If col-index is minimum 3)
+If not look if RIGHT three pieces are the same color. (If col-index is maximum 3)
+If not look if LOWER LEFT DIAGONAL three pieces are the same color. (If col-index is minimum 3 AND if row-index is maximum 2)
+If not look if LOWER RIGHT DIAGONAL three pieces are the same color. (If col-index is maximum 3 AND if row-index is maximum 2)
+If not look if UPPER LEFT DIAGONAL three pieces are the same color. (If col-index is minimum 3 AND if row-index is minimum 3)
+If not look if UPPER RIGHT DIAGONAL three pieces are the same color. (If col-index is maximum 3 AND if row-index is minimum 3)
