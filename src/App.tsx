@@ -5,28 +5,33 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  let redArr: number[] = []
+  let yellowArr: number[] = []
+
+
+
+  const setToken = (event: React.MouseEvent<HTMLElement>) => {
+    let gridIndex: number = parseInt((event.target as HTMLButtonElement).value)
+    //
+    alert(`Current field: ${count}`)
+    if (count % 2 == 0) {
+      alert('red')
+    }
+    else {
+      alert('yellow')
+    }
+    setCount(count + 1)
+  }
+
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="round">Round: {count}</div>
+
+      <div className="grid bg-blue-500 grid-cols-7 gap-4 p-4">
+        {Array.from(Array(42)).map((currElement, index) =>
+          <button onClick={setToken} value={index} className="aspect-square bg-white rounded-full"> {index} </button>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
