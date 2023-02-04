@@ -24,8 +24,80 @@ function App() {
     return winCtr
   }
 
+  const checkUpperRightDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    if (col > 2 && row > 2) {
+      console.log(`currPlayer: ${currPlayer}`)
+      console.log(`tmpField: ${tmpField}`)
+      let winCtr: number = 0
+      let winArr: number[] = [tmpField - 6, tmpField - 12, tmpField - 28]
+      if (currPlayer === Player.Yellow) {
+        winCtr = countWin(winArr, yellowArr)
+      }
+      else {
+        winCtr = countWin(winArr, redArr)
+      }
+      if (winCtr === 3) {
+        alert("WON UPPER RIGHT DIAGONAL")
+      }
+    }
+  }
+
+  const checkUpperLeftDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    if (col > 2 && row > 2) {
+      console.log(`currPlayer: ${currPlayer}`)
+      console.log(`tmpField: ${tmpField}`)
+      let winCtr: number = 0
+      let winArr: number[] = [tmpField - 8, tmpField - 16, tmpField - 24]
+      if (currPlayer === Player.Yellow) {
+        winCtr = countWin(winArr, yellowArr)
+      }
+      else {
+        winCtr = countWin(winArr, redArr)
+      }
+      if (winCtr === 3) {
+        alert("WON UPPER LEFT DIAGONAL")
+      }
+    }
+  }
+
+  const checkLowerRightDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    if (col < 4 && row > 1) {
+      console.log(`currPlayer: ${currPlayer}`)
+      console.log(`tmpField: ${tmpField}`)
+      let winCtr: number = 0
+      let winArr: number[] = [tmpField + 8, tmpField + 16, tmpField + 24]
+      if (currPlayer === Player.Yellow) {
+        winCtr = countWin(winArr, yellowArr)
+      }
+      else {
+        winCtr = countWin(winArr, redArr)
+      }
+      if (winCtr === 3) {
+        alert("WON LOWER RIGHT DIAGONAL")
+      }
+    }
+  }
+
+  const checkLowerLeftDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    if (col > 2 && row < 3) {
+      console.log(`currPlayer: ${currPlayer}`)
+      console.log(`tmpField: ${tmpField}`)
+      let winCtr: number = 0
+      let winArr: number[] = [tmpField + 6, tmpField + 12, tmpField + 18]
+      if (currPlayer === Player.Yellow) {
+        winCtr = countWin(winArr, yellowArr)
+      }
+      else {
+        winCtr = countWin(winArr, redArr)
+      }
+      if (winCtr === 3) {
+        alert("WON LOWER LEFT DIAGONAL")
+      }
+    }
+  }
+
   const checkRight = (col: number, tmpField: number, currPlayer: Player) => {
-    if (col <= 2) {
+    if (col < 3) {
       console.log(`currPlayer: ${currPlayer}`)
       console.log(`tmpField: ${tmpField}`)
       let winCtr: number = 0
@@ -113,10 +185,13 @@ function App() {
     }
     console.log(redArr)
     console.log(yellowArr)
-    //Check if won
     checkBottom(row, tmpField, currPlayer)
     checkLeft(col, tmpField, currPlayer)
     checkRight(col, tmpField, currPlayer)
+    checkLowerLeftDiagonal(row, col, tmpField, currPlayer)
+    checkLowerRightDiagonal(row, col, tmpField, currPlayer)
+    checkUpperLeftDiagonal(row, col, tmpField, currPlayer)
+    checkUpperRightDiagonal(row, col, tmpField, currPlayer)
 
     setCount(count + 1)
   }
