@@ -29,7 +29,7 @@ function App() {
       console.log(`currPlayer: ${currPlayer}`)
       console.log(`tmpField: ${tmpField}`)
       let winCtr: number = 0
-      let winArr: number[] = [tmpField - 6, tmpField - 12, tmpField - 28]
+      let winArr: number[] = [tmpField - 6, tmpField - 12, tmpField - 18]
       if (currPlayer === Player.Yellow) {
         winCtr = countWin(winArr, yellowArr)
       }
