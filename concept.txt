@@ -18,3 +18,13 @@ If not look if LOWER LEFT DIAGONAL three pieces are the same color. (If col-inde
 If not look if LOWER RIGHT DIAGONAL three pieces are the same color. (If col-index is maximum 3 AND if row-index is maximum 2)
 If not look if UPPER LEFT DIAGONAL three pieces are the same color. (If col-index is minimum 3 AND if row-index is minimum 3)
 If not look if UPPER RIGHT DIAGONAL three pieces are the same color. (If col-index is maximum 3 AND if row-index is minimum 3)
+
+[38,39,41]
+[40 missing]
+
+[38,39,40]
+[41 missing]
+
+[39,40,41]
+[38 missing]
+
