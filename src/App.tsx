@@ -231,24 +231,21 @@ function App() {
         break
 
       case 4:
-        if (row < 5) {
+        if (row < 5 && currArr.includes(tmpField + 6)) {
           console.log('col == 4 && row < 5')
           if (currArr.includes(tmpField - 6)) {
             console.log('diagonalTopRight set')
-            //TODO: CHECK THIS!!!
             if (currArr.includes(tmpField - 12)) {
               console.log('2 diagonalTopRight set')
-              if (currArr.includes(tmpField + 6)) {
-                console.log('diagonalTopRight set && 2 diagonalTopRight set')
-                alert(`${currPlayer} WON DIAGONAL LEFT`)
-              }
+              alert(`${currPlayer} WON DIAGONAL LEFT`)
+
             }
-            else if (currArr.includes(tmpField + 6) && currArr.includes(tmpField + 12)) {
+            if (currArr.includes(tmpField + 12)) {
               console.log('diagonalTopRight set && diagonalDownLeft NOT set')
               alert(`${currPlayer} WON DIAGONAL LEFT`)
             }
           }
-          if (currArr.includes(tmpField + 6) && currArr.includes(tmpField + 12) && currArr.includes(tmpField + 18)) {
+          if (currArr.includes(tmpField + 12) && currArr.includes(tmpField + 18)) {
             console.log('diagonalTopRight NOT set && 3 diagonalDownLeft set')
             alert(`${currPlayer} WON DIAGONAL LEFT`)
           }
@@ -256,18 +253,12 @@ function App() {
         break
 
       case 5:
-        if (row < 4) {
+        if (row < 4 && currArr.includes(tmpField + 6) && currArr.includes(tmpField + 12)) {
           console.log('col == 5 && row < 4')
           if (currArr.includes(tmpField - 6)) {
-            console.log('diagonalTopRight set')
-            if (currArr.includes(tmpField + 6) && currArr.includes(tmpField + 12)) {
-              console.log('diagonalTopRight set && 2 diagonalDownLeft set')
-              alert(`${currPlayer} WON DIAGONAL LEFT`)
-            }
-
+            alert(`${currPlayer} WON DIAGONAL LEFT`)
           }
-          if (currArr.includes(tmpField + 6) && currArr.includes(tmpField + 12) && currArr.includes(tmpField + 18)) {
-            console.log('diagonalTopRight NOT set && 3 diagonalDownLeft set')
+          if (currArr.includes(tmpField + 18)) {
             alert(`${currPlayer} WON DIAGONAL LEFT`)
           }
         }
