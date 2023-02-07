@@ -13,16 +13,6 @@ function App() {
     Red = "RED",
     Yellow = "YELLOW"
   }
-  const countWin = (winArr: number[], playerArr: number[]) => {
-    let winCtr = 0
-    winArr.forEach(currWinEl => {
-      console.log(currWinEl)
-      if (playerArr.includes(currWinEl)) {
-        winCtr++
-      }
-    })
-    return winCtr
-  }
 
   const checkRightDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
     console.log('----------')
@@ -282,8 +272,6 @@ function App() {
     console.log('FUNCTION: checkSide')
     console.log(`currPlayer: ${currPlayer}`)
     console.log(`tmpField: ${tmpField}`)
-    let winCtr: number = 0
-    let winArr: number[] = []
     let currArr: number[] = []
     if (currPlayer === Player.Yellow) {
       currArr = yellowArr
@@ -406,16 +394,16 @@ function App() {
     if (row < 3) {
       console.log(`currPlayer: ${currPlayer}`)
       console.log(`tmpField: ${tmpField}`)
-      let winCtr: number = 0
-      let winArr: number[] = [tmpField + 7, tmpField + 14, tmpField + 21]
+      let currArr: number[] = []
       if (currPlayer === Player.Yellow) {
-        winCtr = countWin(winArr, yellowArr)
+        currArr = yellowArr
       }
       else {
-        winCtr = countWin(winArr, redArr)
+        currArr = redArr
+
       }
-      if (winCtr === 3) {
-        alert("WON BOTTOM")
+      if (currArr.includes(tmpField + 7) && currArr.includes(tmpField + 14) && currArr.includes(tmpField + 21)) {
+        alert(`${currPlayer} WON BOTTOM`)
       }
     }
   }
@@ -459,10 +447,8 @@ function App() {
     console.log(yellowArr)
     checkBottom(row, tmpField, currPlayer)
     checkSide(col, tmpField, currPlayer)
-    checkLowerLeftDiagonal(row, col, tmpField, currPlayer)
-    checkLowerRightDiagonal(row, col, tmpField, currPlayer)
-    checkUpperLeftDiagonal(row, col, tmpField, currPlayer)
-    checkUpperRightDiagonal(row, col, tmpField, currPlayer)
+    checkLeftDiagonal(row, col, tmpField, currPlayer)
+    checkRightDiagonal(row, col, tmpField, currPlayer)
 
     setCount(count + 1)
   }
