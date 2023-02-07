@@ -153,6 +153,8 @@ function App() {
   }
 
   const checkLeftDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    console.log('----------')
+    console.log('FUNCTION: checkLeftDiagonal')
     console.log(`currPlayer: ${currPlayer}`)
     console.log(`tmpField: ${tmpField}`)
     let currArr: number[] = []
@@ -276,6 +278,8 @@ function App() {
   }
 
   const checkSide = (col: number, tmpField: number, currPlayer: Player) => {
+    console.log('----------')
+    console.log('FUNCTION: checkSide')
     console.log(`currPlayer: ${currPlayer}`)
     console.log(`tmpField: ${tmpField}`)
     let winCtr: number = 0
@@ -287,95 +291,118 @@ function App() {
     else {
       currArr = redArr
     }
-
+    console.log(`col == ${col}`)
     switch (col) {
       case 0:
-        winArr = [tmpField + 1, tmpField + 2, tmpField + 3]
+        if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2) && currArr.includes(tmpField + 3)) {
+          console.log('(1st, 2nd, 3rd) right set')
+          alert(`${currPlayer} WON SIDE`)
+        }
         break
 
       case 1:
-        if (currArr.includes(tmpField - 1)) {
-          console.log('col == 1 && prevField set')
-          winArr = [tmpField - 1, tmpField + 1, tmpField + 2]
-        }
-        else if (currArr.includes(tmpField + 1)) {
-          console.log('col == 1 && prevField NOT set && nextField set')
-          winArr = [tmpField + 1, tmpField + 2, tmpField + 3]
+        if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2)) {
+          console.log('(1st, 2nd) right set')
+          if (currArr.includes(tmpField - 1)) {
+            console.log('(1st, 2nd) right set && (1st) left set')
+            alert(`${currPlayer} WON SIDE`)
+          }
+          if (currArr.includes(tmpField + 3)) {
+            console.log('(1st, 2nd, 3rd) right set && (1st) left NOT set')
+            alert(`${currPlayer} WON SIDE`)
+          }
         }
         break
 
       case 2:
-        if (currArr.includes(tmpField - 1)) {
-          console.log('col == 2 && prevField set')
-          if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2)) {
-            console.log('col == 2 && prevField set && nextField set && nextNextField set')
-            winArr = [tmpField - 1, tmpField + 1, tmpField + 2]
+        if (currArr.includes(tmpField + 1)) {
+          console.log('(1st) right set')
+          if (currArr.includes(tmpField - 1)) {
+            console.log('(1st) right set && (1st) left set')
+            if (currArr.includes(tmpField + 2)) {
+              console.log('(1st, 2nd) right set && (1st) left set')
+              alert(`${currPlayer} WON SIDE`)
+            }
+            if (currArr.includes(tmpField - 2)) {
+              console.log('(1st) right set && (1st, 2nd) left set')
+              alert(`${currPlayer} WON SIDE`)
+            }
           }
-        }
-        else if (currArr.includes(tmpField + 1)) {
-          console.log('col == 2 && prevField NOT set && nextField set')
-          winArr = [tmpField + 1, tmpField + 2, tmpField + 3]
+          if (currArr.includes(tmpField + 2) && currArr.includes(tmpField + 3)) {
+            console.log('(1st, 2nd, 3rd) right set')
+            alert(`${currPlayer} WON SIDE`)
+          }
         }
         break
 
       case 3:
         if (currArr.includes(tmpField - 1)) {
-          console.log('col == 3 && prevField set')
+          console.log('(1st) left set')
           if (currArr.includes(tmpField + 1)) {
-            console.log('col == 3 && prevField set && nextField set')
+            console.log('(1st) left set && (1st) right set')
             if (currArr.includes(tmpField + 2)) {
-              console.log('col == 3 && prevField set && nextField set && nextNextField set')
-              winArr = [tmpField - 1, tmpField + 1, tmpField + 2]
+              console.log('(1st) left set && (1st, 2nd) right set')
+              alert(`${currPlayer} WON SIDE`)
             }
-            else {
-              console.log('col == 3 && prevField set && nextField set && nextNextField NOT set')
-              winArr = [tmpField - 2, tmpField - 1, tmpField + 1]
+            if (currArr.includes(tmpField - 2)) {
+              console.log('(1st, 2nd) left set && (1st) right set')
+              alert(`${currPlayer} WON SIDE`)
             }
           }
         }
-        else if (currArr.includes(tmpField + 1)) {
-          console.log('col == 3 && prevField NOT set && nextField set')
-          winArr = [tmpField + 1, tmpField + 2, tmpField + 3]
+        if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2) && currArr.includes(tmpField + 3)) {
+          console.log('(1st, 2nd, 3rd) right set && (1st) left NOT set')
+          alert(`${currPlayer} WON SIDE`)
         }
         break
 
       case 4:
-        if (currArr.includes(tmpField + 1)) {
-          console.log('col == 4 && nextField set')
-          if (currArr.includes(tmpField - 1) && currArr.includes(tmpField - 2)) {
-            console.log('col == 4 && nextField set && prevField set && prevPrevField set')
-            winArr = [tmpField - 2, tmpField - 1, tmpField + 1]
+        if (currArr.includes(tmpField - 1)) {
+          console.log('(1st) left set')
+          if (currArr.includes(tmpField + 1)) {
+            console.log('(1st) left set && (1st) right set')
+            if (currArr.includes(tmpField - 2)) {
+              console.log('(1st, 2nd) left set && (1st) right set')
+              alert(`${currPlayer} WON SIDE`)
+            }
+            if (currArr.includes(tmpField + 2)) {
+              console.log('(1st) left set && (2nd) left NOT Set && (1st, 2nd) right set')
+              alert(`${currPlayer} WON SIDE`)
+            }
           }
-        }
-        else if (currArr.includes(tmpField - 1)) {
-          console.log('col == 2 && nextField NOT set && prevField set')
-          winArr = [tmpField - 3, tmpField - 2, tmpField - 1]
+          if (currArr.includes(tmpField - 2) && currArr.includes(tmpField - 3)) {
+            console.log('(1st, 2nd, 3rd) left set && (1st) right NOT set')
+            alert(`${currPlayer} WON SIDE`)
+          }
         }
         break
 
       case 5:
-        if (currArr.includes(tmpField + 1)) {
-          console.log('col == 5 && nextField set')
-          winArr = [tmpField - 2, tmpField - 1, tmpField + 1]
-        }
-        else if (currArr.includes(tmpField - 1)) {
-          console.log('col == 5 && nextField NOT set && prevField set')
-          winArr = [tmpField - 3, tmpField - 2, tmpField - 1]
+        if (currArr.includes(tmpField - 1) && currArr.includes(tmpField - 2)) {
+          console.log('(1st, 2nd) left set')
+          if (currArr.includes(tmpField + 1)) {
+            console.log('(1st, 2nd) left set && (1st) right set')
+            alert(`${currPlayer} WON SIDE`)
+          }
+          if (currArr.includes(tmpField - 3)) {
+            console.log('(1st, 2nd, 3rd) left set && (1st) right NOT set')
+            alert(`${currPlayer} WON SIDE`)
+          }
         }
         break
 
       case 6:
-        winArr = [tmpField - 3, tmpField - 2, tmpField - 1]
+        if (currArr.includes(tmpField - 1) && currArr.includes(tmpField - 2) && currArr.includes(tmpField - 3)) {
+          console.log('(1st, 2nd, 3rd) left set')
+          alert(`${currPlayer} WON SIDE`)
+        }
         break
-    }
-
-    winCtr = countWin(winArr, currArr)
-    if (winCtr === 3) {
-      alert("WON ")
     }
   }
 
   const checkBottom = (row: number, tmpField: number, currPlayer: Player) => {
+    console.log('----------')
+    console.log('FUNCTION: checkBottom')
     if (row < 3) {
       console.log(`currPlayer: ${currPlayer}`)
       console.log(`tmpField: ${tmpField}`)
@@ -394,6 +421,8 @@ function App() {
   }
 
   const setToken = (event: React.MouseEvent<HTMLElement>) => {
+    console.log('----------')
+    console.log('FUNCTION: setToken')
     let gridIndex: number = parseInt((event.target as HTMLButtonElement).value)
     let col: number = gridIndex % 7
     let row: number = Math.floor(gridIndex / 7)
