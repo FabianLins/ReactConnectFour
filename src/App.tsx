@@ -15,6 +15,8 @@ function App() {
   }
 
   const checkRightDiagonal = (row: number, col: number, tmpField: number, currPlayer: Player) => {
+    console.log('----------')
+    console.log('FUNCTION: checkRightDiagonal')
     console.log(`currPlayer: ${currPlayer}`)
     console.log(`tmpField: ${tmpField}`)
     let currArr: number[] = []
@@ -27,113 +29,111 @@ function App() {
     switch (col) {
 
       case 0:
+        console.log(`col == ${col}`)
         if (row < 3 && currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16) && currArr.includes(tmpField + 24)) {
-          console.log('col == 0 && row < 3 && 3 diagonalDownLeft set')
+          console.log(`[row == ${row} (row < 3)] && 3 diagonalDownRight set`)
           alert(`${currPlayer} WON DIAGONAL RIGHT`)
         }
         break
 
       case 1:
-        if (row < 4) {
-          console.log('col == 1 && row < 4')
+        console.log(`col == ${col}`)
+        if (row < 4 && currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
+          console.log(`[row == ${row} (row < 4)] && 2 diagonalDownRight set`)
           if (currArr.includes(tmpField - 8)) {
-            console.log('diagonalTopRight set')
-            if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
-              console.log('diagonalTopRight set && 2 diagonalDownLeft set')
-              alert(`${currPlayer} WON DIAGONAL RIGHT`)
-            }
+            console.log('diagonalTopLeft set && 2 diagonalDownRight set')
+            alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
-          if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16) && currArr.includes(tmpField + 24)) {
-            console.log('diagonalTopRight NOT set && 3 diagonalDownLeft set')
+          if (currArr.includes(tmpField + 24)) {
+            console.log('diagonalTopLeft NOT set && 3 diagonalDownRight set')
             alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
         }
         break
 
       case 2:
-        if (row > 0) {
-          console.log('col == 2 && row > 0')
-          if (currArr.includes(tmpField + 8 && tmpField - 8)) {
-            console.log('&& diagonalDownLeft set')
+        console.log(`col == ${col}`)
+        if (row < 5 && currArr.includes(tmpField + 8)) {
+          console.log(`[row == ${row} (row < 5)] && diagonalDownRight set`)
+          if (currArr.includes(tmpField - 8)) {
+            console.log('diagonalTopLeft set')
             if (currArr.includes(tmpField + 16)) {
-              console.log('diagonalDownLeft set && 2 diagonalTopRight set')
+              console.log(`2 diagonalDownRight set && diagonalTopLeft`)
               alert(`${currPlayer} WON DIAGONAL RIGHT`)
             }
-            else if (currArr.includes(tmpField - 16)) {
-              console.log('diagonalDownLeft set && 2 diagonalTopRight set')
+            if (currArr.includes(tmpField - 16)) {
+              console.log('(1st) diagonalDownRight set && (1st, 2nd) diagonalTopLeft set')
               alert(`${currPlayer} WON DIAGONAL RIGHT`)
             }
           }
-          if (currArr.includes(tmpField - 8) && currArr.includes(tmpField - 16) && currArr.includes(tmpField - 24)) {
-            console.log('diagonalDownLeft NOT set && 3 diagonalTopRight set')
+          if (currArr.includes(tmpField + 16) && currArr.includes(tmpField + 24)) {
+            console.log('(1st) diagonalDownRight NOT set && (1st, 2nd, 3rd) diagonalTopLeft set')
             alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
         }
         break
 
       case 3:
-        console.log('col == 3')
+        console.log(`col == ${col}`)
         if (currArr.includes(tmpField - 8)) {
-          console.log('diagonalTopRight set')
+          console.log('(1st) diagonalTopLeft set')
           if (currArr.includes(tmpField - 16)) {
-            console.log('diagonalTopRight set && 2 diagonalTopRight set')
+            console.log('(1st, 2nd) diagonalTopLeft set')
             if (currArr.includes(tmpField - 24)) {
-              console.log('diagonalTopRight set && 2 diagonalTopRight set && 3 diagonalTopRight set')
+              console.log('(1st, 2nd, 3rd) diagonalTopLeft set')
               alert(`${currPlayer} WON DIAGONAL RIGHT`)
             }
-            else if (currArr.includes(tmpField + 8)) {
-              console.log('diagonalTopRight set && 2 diagonalTopRight set && 3 diagonalTopRight NOT set')
+            if (currArr.includes(tmpField + 8)) {
+              console.log('(1st, 2nd) diagonalTopLeft set && (1st) diagonalDownRight set && (3rd) diagonalTopLeft NOT set')
               alert(`${currPlayer} WON DIAGONAL RIGHT`)
             }
           }
-          else if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
-            console.log('diagonalTopRight set && diagonalDownLeft NOT set')
+          if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
+            console.log('(1st) diagonalTopLeft set && (1st, 2nd) diagonalDownRight set && (2nd) diagonalTopLeft NOT set')
             alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
         }
         if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16) && currArr.includes(tmpField + 24)) {
-          console.log('diagonalTopRight NOT set && 3 diagonalDownLeft set')
+          console.log('(1st, 2nd, 3rd) diagonalDownLeft set && (1st) diagonalTopRight NOT set')
           alert(`${currPlayer} WON DIAGONAL RIGHT`)
         }
         break
 
       case 4:
-
-        if (row < 5) {
-          console.log('col == 4 && row < 5')
+        console.log(`col == ${col}`)
+        if (row > 0) {
+          console.log(`[row == ${row} (row > 0)]`)
           if (currArr.includes(tmpField - 8)) {
-            console.log('diagonalTopRight set')
+            console.log('(1st) diagonalTopLeft set')
             if (currArr.includes(tmpField - 16)) {
-              console.log('2 diagonalTopRight set')
+              console.log('(1st, 2nd) diagonalTopLeft set')
               if (currArr.includes(tmpField + 8)) {
-                console.log('diagonalTopRight set && 2 diagonalTopRight set')
+                console.log('(1st, 2nd) diagonalTopLeft && (1st) diagonalDownRight set')
                 alert(`${currPlayer} WON DIAGONAL RIGHT`)
               }
             }
-            else if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
-              console.log('diagonalTopRight set && diagonalDownLeft NOT set')
+            if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16)) {
+              console.log('(1st) diagonalTopLeft set && (1st, 2nd) diagonalDownRight')
               alert(`${currPlayer} WON DIAGONAL RIGHT`)
             }
           }
           if (currArr.includes(tmpField + 8) && currArr.includes(tmpField + 16) && currArr.includes(tmpField + 24)) {
-            console.log('diagonalTopRight NOT set && 3 diagonalDownLeft set')
+            console.log('diagonalTopLeft NOT set && (1st, 2nd, 3rd) diagonalDownRight set')
             alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
         }
         break
 
       case 5:
-        if (row > 1) {
-          console.log('col == 1 && row > 1')
+        console.log(`col == ${col}`)
+        if (row > 1 && currArr.includes(tmpField - 8) && currArr.includes(tmpField - 16)) {
+          console.log(`[row == ${row} (row > 1)] && (1st, 2nd) diagonTopLeft set`)
           if (currArr.includes(tmpField + 8)) {
-            console.log('&& diagonalDownLeft set')
-            if (currArr.includes(tmpField - 8) && currArr.includes(tmpField - 16)) {
-              console.log('diagonalDownLeft set && 2 diagonalTopRight set')
-              alert(`${currPlayer} WON DIAGONAL RIGHT`)
-            }
+            console.log('(1st, 2nd) diagonalTopLeft set && (1st) diagonalDownRight set')
+            alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
-          if (currArr.includes(tmpField - 8) && currArr.includes(tmpField - 16) && currArr.includes(tmpField - 24)) {
-            console.log('diagonalDownLeft NOT set && 3 diagonalTopRight set')
+          if (currArr.includes(tmpField - 24)) {
+            console.log('(1st) diagonalDownRight NOT set && (1st, 2nd, 3rd) diagonalTopLeft set')
             alert(`${currPlayer} WON DIAGONAL RIGHT`)
           }
         }
@@ -141,7 +141,7 @@ function App() {
 
       case 6:
         if (row > 2 && currArr.includes(tmpField - 8) && currArr.includes(tmpField - 16) && currArr.includes(tmpField - 24)) {
-          console.log('col == 6 && row > 2 && 3 diagonalTopLeft set')
+          console.log('col == 6 && row > 2 && (1st, 2nd, 3rd) diagonalTopLeft set')
           alert(`${currPlayer} WON DIAGONAL RIGHT`)
         }
         break
@@ -185,7 +185,7 @@ function App() {
 
       case 2:
         if (row > 0) {
-          console.log('col == 2 && row > 0')
+          console.log('col == ${col} && row > 0')
           if (currArr.includes(tmpField + 6) && currArr.includes(tmpField - 6)) {
             console.log('&& diagonalDownLeft set')
             if (currArr.includes(tmpField + 12)) {
@@ -305,14 +305,14 @@ function App() {
 
       case 2:
         if (currArr.includes(tmpField - 1)) {
-          console.log('col == 2 && prevField set')
+          console.log('col == ${col} && prevField set')
           if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2)) {
-            console.log('col == 2 && prevField set && nextField set && nextNextField set')
+            console.log('col == ${col} && prevField set && nextField set && nextNextField set')
             alert(`${currPlayer} WON SIDE`)
           }
         }
         else if (currArr.includes(tmpField + 1) && currArr.includes(tmpField + 2) && currArr.includes(tmpField + 3)) {
-          console.log('col == 2 && prevField NOT set && 3 nextField set')
+          console.log('col == ${col} && prevField NOT set && 3 nextField set')
           alert(`${currPlayer} WON SIDE`)
         }
         break
